@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<h2>Registration</h2>
+<form th:action="@{/register}" th:object="${registrationDto}" th:method="POST" >
+    <input type="text" id="email" name="email" placeholder="email" th:field="*{email}"/>
+    <input type="text" id="username" name="username" placeholder="username" th:field="*{username}"/>
+    <input type="text" id="password" name="password" placeholder="password" th:field="*{password}"/>
+    <input type="text" id="confirm-password" name="confirm-password" placeholder="confirm-password" th:field="*{confirmPassword}"/>
+    <input type="submit" value="Register"/>
+</form>
+</body>
+</html>

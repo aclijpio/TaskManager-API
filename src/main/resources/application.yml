@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tasks
+    username: aclij
+    password: 1c1155hg
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show_sql: true
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+user:
+  service:
+    default-role: ROLE_USER
+
+
+logging:
+  level:
+    web: debug
+jwt:
+  secret: XcESicxsXBIoIgR+aYcDtn9YGWIIOsH8E892Pce8dGc
+  lifetime: 10m
