@@ -21,4 +21,4 @@ logging:
     web: debug
 jwt:
   secret: XcESicxsXBIoIgR+aYcDtn9YGWIIOsH8E892Pce8dGc
-  lifetime: 10m
+  lifetime: 120m

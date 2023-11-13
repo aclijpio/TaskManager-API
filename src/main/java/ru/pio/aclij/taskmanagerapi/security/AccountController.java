@@ -11,10 +11,10 @@ import ru.pio.aclij.taskmanagerapi.security.dtos.RegistrationUserDto;
 public class AccountController {
     @GetMapping("/registration")
     public String register(@ModelAttribute("registrationDto")RegistrationUserDto registrationUserDto){
-        return "/auth/registration";
+        return "/authorization/registration";
     }
     @GetMapping("/login")
     public String login(@ModelAttribute("request") JwtRequest jwtRequest){
-        return "/auth/login";
+        return "/authorization/login";
     }
 }

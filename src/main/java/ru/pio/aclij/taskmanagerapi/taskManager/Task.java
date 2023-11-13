@@ -3,8 +3,12 @@ package ru.pio.aclij.taskmanagerapi.taskManager;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import ru.pio.aclij.taskmanagerapi.security.entities.User;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 
 @Data
 @Entity
@@ -14,6 +18,9 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "title")
     @NotBlank(message = "Заголовки задач не могут быть пустыми.")
@@ -25,20 +32,27 @@ public class Task {
     @Column(name = "completed")
     private Boolean completed;
 
-    @Column(name = "created_at", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp createdAt;
-
-    @Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp updatedAt;
-
     @Column(name = "end_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp endDate;
-    @PreUpdate
-    public void setUpdateAt(){
-        this.updatedAt = new Timestamp(System.currentTimeMillis());
+    private LocalDate endDate;
+
+
+    public Task(String title, String description, Boolean completed, LocalDate endDate) {
+        this.title = title;
+        this.description = description;
+        this.completed = completed;
+        this.endDate = endDate;
     }
 
+    public Task() {
+
+    }
+
+    public Task(User user, String title, String description, Boolean completed, LocalDate endDate) {
+        this.user = user;
+        this.title = title;
+        this.description = description;
+        this.completed = completed;
+        this.endDate = endDate;
+    }
 }
